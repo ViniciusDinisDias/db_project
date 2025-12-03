@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<body>
+  <h2>Novo Funcionário</h2>
+  <form th:object="${funcionario}"  th:action="@{/funcionarios}" th:object="${funcionario}" method="post">
+    <label>Nome: <input type="text" th:field="*{nome}" /></label><br/>
+    <label>CPF: <input type="text" th:field="*{cpf}" /></label><br/>
+    <label>Cargo (id): <input type="number" th:field="*{cargo.idCargo}" /></label><br/>
+    <button type="submit">Salvar</button>
+  <div th:if="${#fields.hasErrors()}"><p th:each="err : ${#fields.errors('*')}"><span th:text="${err}"></span></p></div></form>
+</body>
+</html>

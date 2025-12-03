@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<body>
+  <h2>Funcionários</h2>
+  <a th:href="@{/funcionarios/new}">Novo funcionário</a>
+  <table>
+    <thead><tr><th>ID</th><th>Ações</th><th>Nome</th><th>Cargo</th><th>Ações</th></tr></thead>
+    <tbody>
+      <tr th:each="f : ${funcionarios}">
+        <td th:text="${f.idFuncionario}">1</td>
+        <td th:text="${f.nome}">Nome</td>
+        <td th:text="${f.cargo.nome}">Cargo</td>
+        <td><a th:href="@{'/funcionarios/' + ${f.idFuncionario}}">Ver</a></td>
+        <td>
+          <a th:href="@{/funcionarios/editar/ + ${funcionario.idFuncionario}}">Editar</a>
+          <form th:action="@{/funcionarios/delete/ + ${funcionario.idFuncionario}}" method="post" style="display:inline">
+            <button type="submit">Excluir</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}" />
+</head>
+<body>
+<header>
+    <h1>🏥 Sistema Hospitalar</h1>
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">Hospital</a>
+        <ul class="nav-links">
+            <li><a th:href="@{/pacientes}">Pacientes</a></li>
+            <li><a th:href="@{/funcionarios}">Funcionários</a></li>
+            <li><a th:href="@{/consultas}">Consultas</a></li>
+            <li><a th:href="@{/receitas}">Receitas</a></li>
+        </ul>
+        <div class="nav-auth">
+                <span th:if="${#request.remoteUser != null}">
+                    <a th:href="@{/logout}">Logout</a>
+                </span>
+            <span th:if="${#request.remoteUser == null}">
+                    <a th:href="@{/login}">Login</a>
+                </span>
+        </div>
+    </nav>
+</header>
+
+<main th:fragment="content">
+    <th:block th:replace="~{::content}" />
+</main>
+
+<footer>
+    <p>&copy; 2025 Hospital Tavares - Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<body>
+  <h2>Nova Consulta</h2>
+  <form th:object="${consulta}"  th:action="@{/consultas}" th:object="${consulta}" method="post">
+    <label>Paciente (id): <input type="number" th:field="*{paciente.idPaciente}" /></label><br/>
+    <label>Médico (id): <input type="number" th:field="*{funcionario.idFuncionario}" /></label><br/>
+    <label>Sala (id): <input type="number" th:field="*{sala.idSala}" /></label><br/>
+    <label>Data/Hora: <input type="datetime-local" th:field="*{dataHora}" /></label><br/>
+    <button type="submit">Salvar</button>
+  <div th:if="${#fields.hasErrors()}"><p th:each="err : ${#fields.errors('*')}"><span th:text="${err}"></span></p></div></form>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<body>
+  <h2>Nova Receita</h2>
+  <form th:object="${receita}"  th:action="@{/receitas}" th:object="${receita}" method="post">
+    <label>Paciente (id): <input type="number" th:field="*{paciente.idPaciente}" /></label><br/>
+    <label>Médico (id): <input type="number" th:field="*{funcionario.idFuncionario}" /></label><br/>
+    <label>Observações: <input type="text" th:field="*{observacoes}" /></label><br/>
+    <button type="submit">Salvar</button>
+  <div th:if="${#fields.hasErrors()}"><p th:each="err : ${#fields.errors('*')}"><span th:text="${err}"></span></p></div></form>
+</body>
+</html>

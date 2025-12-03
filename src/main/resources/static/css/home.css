@@ -1,0 +1,200 @@
+:root {
+  --primary-color: #0077b6;
+  --secondary-color: #a8dadc;
+  --accent-color: #00b4d8;
+  --success-color: #38b000;
+  --danger-color: #e63946;
+  --light-bg: #dadadac2;
+  --dark-text: #333;
+  --shadow-light: rgba(0, 119, 182, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-bg);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--dark-text);
+  position: relative;
+  overflow-x: hidden;
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  box-shadow: 0 2px 5px var(--shadow-dark);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  margin: 0;
+  text-shadow: 0 2px 4px var(--shadow-dark);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+}
+
+nav ul li a {
+  background-color: white;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px var(--shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  display: inline-block;
+  animation: buttonFloat 2s ease-in-out infinite;
+}
+
+nav ul li:nth-child(1) a { animation-delay: 0s; }
+nav ul li:nth-child(2) a { animation-delay: 0.2s; }
+nav ul li:nth-child(3) a { animation-delay: 0.4s; }
+nav ul li:nth-child(4) a { animation-delay: 0.6s; }
+
+nav ul li a:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px var(--shadow-dark);
+}
+
+@keyframes buttonFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex: 1;
+  width: 90%;
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+main h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+main p {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+/* Rodapé */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+  box-shadow: 0 -2px 6px var(--shadow-dark);
+  z-index: 10;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li a {
+    width: 80%;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  main h2 {
+    font-size: 1.6rem;
+  }
+
+  main p {
+    font-size: 1rem;
+  }
+}
+ /* Estilos para as figuras redondas com borda dourada e sem preenchimento */
+  .circle {
+  	position: absolute;
+  	border-radius: 50%;
+  	opacity: 0.6;
+  	z-index: 1;
+  	pointer-events: none;
+  	background: transparent;
+  	border: 2px solid #d4af37; /* dourado */
+  }
+
+  /* Tamanhos maiores e posições */
+  .circle1 {
+  	width: 300px;
+  	height: 300px;
+  	top: 50px;
+  	left: 200px;
+  }
+
+  .circle2 {
+  	width: 200px;
+  	height: 200px;
+  	top: 100px;
+  	right: 300px;
+  }
+
+  .circle3 {
+  	width: 240px;
+  	height: 240px;
+  	bottom: 40px;
+  	left: 40px;
+  	transform: none;
+  }
+
+  .circle4 {
+  	width: 160px;
+  	height: 160px;
+  	bottom: 40px;
+  	right: 80px;
+  }

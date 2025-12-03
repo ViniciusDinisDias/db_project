@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<body>
+  <h2>Consultas</h2>
+  <a th:href="@{/consultas/new}">Nova consulta</a>
+  <table>
+    <thead><tr><th>ID</th><th>Ações</th><th>Paciente</th><th>Médico</th><th>Data/Hora</th></tr></thead>
+    <tbody>
+      <tr th:each="c : ${consultas}">
+        <td th:text="${c.idConsulta}">1</td>
+        <td th:text="${c.paciente.nome}">Paciente</td>
+        <td th:text="${c.funcionario.nome}">Médico</td>
+        <td th:text="${c.dataHora}">2025-09-01 10:00</td>
+        <td>
+          <a th:href="@{/consultas/editar/ + ${consulta.idConsulta}}">Editar</a>
+          <form th:action="@{/consultas/delete/ + ${consulta.idConsulta}}" method="post" style="display:inline">
+            <button type="submit">Excluir</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

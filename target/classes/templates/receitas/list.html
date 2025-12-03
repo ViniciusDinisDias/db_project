@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<body>
+  <h2>Receitas</h2>
+  <a th:href="@{/receitas/new}">Nova receita</a>
+  <table>
+    <thead><tr><th>ID</th><th>Ações</th><th>Paciente</th><th>Médico</th><th>Data</th></tr></thead>
+    <tbody>
+      <tr th:each="r : ${receitas}">
+        <td th:text="${r.idReceita}">1</td>
+        <td th:text="${r.paciente.nome}">Paciente</td>
+        <td th:text="${r.funcionario.nome}">Médico</td>
+        <td th:text="${r.dataEmissao}">2025-09-01</td>
+        <td>
+          <a th:href="@{/receitas/editar/ + ${receita.idReceita}}">Editar</a>
+          <form th:action="@{/receitas/delete/ + ${receita.idReceita}}" method="post" style="display:inline">
+            <button type="submit">Excluir</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

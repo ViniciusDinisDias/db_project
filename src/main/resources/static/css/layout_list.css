@@ -1,0 +1,308 @@
+/* 🎨 Variáveis de Tema */
+:root {
+  --primary-color: #0077b6;
+  --secondary-color: #a8dadc;
+  --accent-color: #00b4d8;
+  --success-color: #38b000;
+  --danger-color: #e63946;
+  --light-bg: #f5f7fa;
+  --dark-bg: #1f1f1f;
+  --light-text: #333;
+  --dark-text: #f1f1f1;
+  --white: #ffffff;
+  --shadow-light: rgba(0, 119, 182, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+/* 🌙 Dark Mode */
+body.dark-mode {
+  --light-bg: var(--dark-bg);
+  --light-text: var(--dark-text);
+  --white: #2b2b2b;
+}
+
+/* 🌐 Estrutura Geral */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: var(--light-bg);
+  color: var(--light-text);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* 🟠 Cabeçalho */
+header {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px var(--shadow-dark);
+}
+
+/* ✅ Navegação */
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+nav a:hover,
+nav a.active {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* 🌗 Botão do Dark Mode */
+.toggle-theme {
+  background: var(--white);
+  color: var(--primary-color);
+  border-radius: 20px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+.toggle-theme:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* 🔍 Topo (Busca + Botão) */
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 20px auto;
+  gap: 10px;
+}
+
+.top-actions input {
+  flex: 1;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--light-text);
+  transition: var(--transition);
+}
+
+.top-actions input:focus {
+  border-color: var(--primary-color);
+}
+
+.btn-add {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.btn-add:hover {
+  background: var(--accent-color);
+}
+
+/* 📋 Tabela com grade completa */
+.table {
+  width: 90%;
+  margin: 1rem auto;
+  border-collapse: collapse;
+  background: var(--white);
+  border: 1px solid #343333;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px var(--shadow-light);
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 0.8rem;
+  border: 1px solid #343333;
+  text-align: left;
+}
+
+/* Cabeçalho com destaque */
+.table thead th {
+  background: var(--secondary-color);
+  color: #333;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+/* Linhas alternadas */
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover */
+.table tbody tr:hover {
+  background-color: rgba(0, 119, 182, 0.05);
+}
+
+/* 🛠 Botões CRUD agrupados */
+.table .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.table .actions form {
+  margin: 0;
+}
+
+.table .actions button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.btn-action {
+  font-size: 1rem;
+  margin: 0 5px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-action.view {
+  color: var(--primary-color);
+}
+
+.btn-action.edit {
+  color: #f4a261;
+}
+
+.btn-action.delete {
+  color: var(--danger-color);
+}
+
+.btn-action:hover {
+  opacity: 0.8;
+}
+
+.btn-action i {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* 📄 Paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 20px 0;
+}
+
+.page {
+  padding: 6px 12px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.page:hover,
+.page.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.page.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* 🟡 Círculos Decorativos */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.circle1 {
+  width: 300px;
+  height: 300px;
+  top: 50px;
+  left: 200px;
+}
+
+.circle2 {
+  width: 200px;
+  height: 200px;
+  top: 100px;
+  right: 300px;
+}
+
+.circle3 {
+  width: 240px;
+  height: 240px;
+  bottom: 40px;
+  left: 40px;
+}
+
+.circle4 {
+  width: 160px;
+  height: 160px;
+  bottom: 40px;
+  right: 80px;
+}
+
+/* ⬇ Rodapé */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--primary-color);
+  color: white;
+  margin-top: auto;
+}
+
+/* 🏷️ Título da página */
+main h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* 📱 Responsividade básica */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .top-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add {
+    justify-content: center;
+  }
+}

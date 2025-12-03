@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${pageTitle} ?: 'Gestão de Pacientes'">Gestão de Pacientes</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/layout_list.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!-- Círculos decorativos -->
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+<div class="circle circle4"></div>
+
+<!-- HEADER (poderia estar em um fragmento separado) -->
+<header>
+    <h1 th:text="${headerTitle} ?: 'Gestão de Pacientes'">Gestão de Pacientes</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{/home}" th:classappend="${activePage == 'home'} ? 'active'">Início</a></li>
+            <li><a th:href="@{/pacientes}" th:classappend="${activePage == 'pacientes'} ? 'active'">Pacientes</a></li>
+            <li><a th:href="@{/medicos}" th:classappend="${activePage == 'medicos'} ? 'active'">Médicos</a></li>
+            <li><a th:href="@{/consultas}" th:classappend="${activePage == 'consultas'} ? 'active'">Consultas</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botão de Tema Escuro/Claro -->
+    <div class="toggle-theme">
+        <i class="fas fa-moon"></i>
+    </div>
+</header>
+
+<main>
+    <h2>Lista de Pacientes</h2>
+
+    <!-- Buscar e botão de novo paciente -->
+    <div class="top-actions">
+        <input type="text" id="searchInput" placeholder="Buscar por nome ou CPF">
+        <a th:href="@{/pacientes/new}" class="btn-add"><i class="fas fa-user-plus"></i> Novo Paciente</a>
+    </div>
+
+    <!-- TABELA -->
+    <table class="table fade-in" id="pacientesTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Data de Nascimento</th>
+            <th>Sexo</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${pacientes}">
+            <td th:text="${p.idPaciente}">1</td>
+            <td th:text="${p.nome}">Nome</td>
+            <td th:text="${p.cpf}">000.000.000-00</td>
+            <td th:text="${p.dataNascimento}">dd/mm/YYYY</td>
+            <td th:text="${p.sexo}">Sexo</td>
+            <td class="actions">
+                <a th:href="@{'/pacientes/' + ${p.idPaciente}}" class="btn-action view" aria-label="Visualizar paciente">
+                    <i class="fas fa-eye"></i>
+                </a>
+                <a th:href="@{'/pacientes/editar/' + ${p.idPaciente}}" class="btn-action edit" aria-label="Editar paciente">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <form th:action="@{'/pacientes/delete/' + ${p.idPaciente}}" method="post" style="display:inline"
+                      onsubmit="return confirm('Tem certeza que deseja excluir este paciente?');">
+                    <button type="submit" class="btn-action delete" aria-label="Excluir paciente">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(pacientes)}">
+            <td colspan="6" class="text-center">Nenhum paciente encontrado.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Paginação opcional -->
+    <div class="pagination" th:if="${totalPages > 1}">
+        <a th:href="@{'/pacientes?page=' + (${currentPage} - 1)}" class="page prev" th:classappend="${currentPage == 1} ? 'disabled'">&laquo;</a>
+
+        <a th:each="i : ${#numbers.sequence(1, totalPages)}"
+           th:href="@{'/pacientes?page=' + ${i}}"
+           th:text="${i}"
+           th:classappend="${i == currentPage} ? 'active' : ''">
+        </a>
+
+        <a th:href="@{'/pacientes?page=' + (${currentPage} + 1)}" class="page next" th:classappend="${currentPage == totalPages} ? 'disabled'">&raquo;</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span> Sistema Hospitalar. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    // Dark Mode
+    const toggle = document.querySelector('.toggle-theme');
+    const body = document.body;
+
+    toggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+    });
+</script>
+</body>
+</html>

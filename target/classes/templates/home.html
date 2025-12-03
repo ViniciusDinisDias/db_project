@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital - Página Inicial</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+<div class="circle circle4"></div>
+
+<header>
+    <h1>Sistema Hospitalar</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{/consultas}">Consultas</a></li>
+            <li><a th:href="@{/pacientes}">Pacientes</a></li>
+            <li><a th:href="@{/funcionarios}">Funcionários</a></li>
+            <li><a th:href="@{/receitas}">Receitas</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="fade-in">
+        <h2>Bem-vindo ao Sistema Hospitalar</h2>
+        <p>Utilize o menu acima para acessar os módulos do sistema.</p>
+        <p>Este sistema permite gerenciar consultas, pacientes, funcionários e receitas médicas.</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Hospital Tavares - Todos os direitos reservados.</p>
+</footer>
+
+<script th:src="@{/js/animations.js}"></script>
+</body>
+</html>
